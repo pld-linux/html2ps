@@ -1,15 +1,18 @@
+%include	/usr/lib/rpm/macros.perl
 Summary:	HTML to PostScript converter
 Summary(pl):	Konwerter HTML do PostScriptu
 Name:		html2ps
 Version:	1.0b3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
+Patch1:		%{name}-perl_path.patch
 URL:		http://www.tdb.uu.se/~jan/html2ps.html
+BuildRequires:	perl-libwww
+BuildRequires:	rpm-perlprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Requires:	perl
 
 %define		_xbindir	/usr/X11R6/bin
 
@@ -46,7 +49,8 @@ konwertera z HTML do PostScriptu.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
