@@ -3,10 +3,10 @@ Summary(pl):	Konwerter HTML do PostScriptu
 Name:		html2ps
 Version:	1.0b3
 Release:	1
+License:	GPL
 Group:		Applications/Graphics
 Group(de):	Applikationen/Grafik
 Group(pl):	Aplikacje/Grafika
-License:	GPL
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
 URL:		http://www.tdb.uu.se/~jan/html2ps.html
@@ -16,10 +16,10 @@ Requires:	perl
 %define		_xbindir	/usr/X11R6/bin
 
 %description
-The Perl script html2ps converts HTML to PostScript.
-It would have more capabilities if you have some of these packages
-installed: ImageMagick, netpbm-progs, libjpeg-progs, perl-libwww,
-ghostscript, tetex, tetex-dvips - see documentation for details.
+The Perl script html2ps converts HTML to PostScript. It would have
+more capabilities if you have some of these packages installed:
+ImageMagick, netpbm-progs, libjpeg-progs, perl-libwww, ghostscript,
+tetex, tetex-dvips - see documentation for details.
 
 html2ps can be used as ImageMagick delegate to convert from HTML.
 
@@ -37,7 +37,7 @@ Summary(pl):	Interfejs graficzny do html2ps - konwertera HTML do PostScriptu
 Group:		X11/Applications/Graphics
 Group(de):	X11/Applikationen/Grafik
 Group(pl):	X11/Aplikacje/Grafika
-Requires:	%{name}
+Requires:	%{name} = %{version}
 Requires:	tk
 
 %description -n xhtml2ps
@@ -51,8 +51,6 @@ konwertera z HTML do PostScriptu.
 %prep
 %setup -q
 %patch -p1
-
-%build
 
 %install
 rm -rf $RPM_BUILD_ROOT
