@@ -3,7 +3,7 @@ Summary:	HTML to PostScript converter
 Summary(pl):	Konwerter HTML do PostScriptu
 Name:		html2ps
 Version:	1.0b3
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
@@ -13,8 +13,6 @@ Patch1:		%{name}-perl_path.patch
 Patch2:		%{name}-open.patch
 URL:		http://www.tdb.uu.se/~jan/html2ps.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_xbindir	/usr/X11R6/bin
 
 %description
 The Perl script html2ps converts HTML to PostScript. It would have
@@ -55,7 +53,7 @@ konwertera z HTML do PostScriptu.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_xbindir},%{_sysconfdir},%{_mandir}/man{1,5}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir},%{_mandir}/man{1,5}}
 
 sed \
 	-e "s!@CONFDIR@!%{_sysconfdir}!" \
@@ -68,7 +66,7 @@ sed \
 
 install html2psrc.5 $RPM_BUILD_ROOT%{_mandir}/man5
 install html2psrc $RPM_BUILD_ROOT%{_sysconfdir}
-install contrib/xhtml2ps/xhtml2ps $RPM_BUILD_ROOT%{_xbindir}
+install contrib/xhtml2ps/xhtml2ps $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -76,11 +74,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README html2ps.html sample
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/html2ps
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/*
 %{_mandir}/man[15]/*
 
 %files -n xhtml2ps
 %defattr(644,root,root,755)
 %doc contrib/xhtml2ps/README
-%attr(755,root,root) %{_xbindir}/*
+%attr(755,root,root) %{_bindir}/xhtml2ps
