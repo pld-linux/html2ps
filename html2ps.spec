@@ -7,6 +7,7 @@ Release:	4
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
+# Source0-md5:	9386d64649a76e0ad2458393a91d0aab
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-perl_path.patch
 Patch2:		%{name}-open.patch
