@@ -1,6 +1,6 @@
 # don't use macros.perl here, it generates only unnecessary dependencies
 Summary:	HTML to PostScript converter
-Summary(pl):	Konwerter HTML do PostScriptu
+Summary(pl):	Konwerter HTML-a do PostScriptu
 Name:		html2ps
 Version:	1.0b3
 Release:	5
@@ -28,11 +28,11 @@ Skrypt ma wiêksze mo¿liwo¶ci, je¿eli s± zainstalowane pakiety:
 ImageMagick, netpbm-rpgs, libjpeg-progs, perl-libwww, ghostscript,
 tetex, tetex-dvips - szczegó³y w dokumentacji.
 
-html2ps mo¿e byæ u¿ywany przez ImageMagick do konwersji z HTML.
+html2ps mo¿e byæ u¿ywany przez ImageMagick do konwersji z HTML-a.
 
 %package -n xhtml2ps
 Summary:	GUI frontend for html2ps, a HTML-to-PostScript converter
-Summary(pl):	Interfejs graficzny do html2ps - konwertera HTML do PostScriptu
+Summary(pl):	Interfejs graficzny do html2ps - konwertera HTML-a do PostScriptu
 Group:		X11/Applications/Graphics
 Requires:	%{name} = %{version}
 Requires:	tk
@@ -43,7 +43,7 @@ HTML-to-PostScript converter.
 
 %description -n xhtml2ps -l pl
 xhtml2ps jest darmow± nak³adk± z interfejsem graficznym do html2ps -
-konwertera z HTML do PostScriptu.
+konwertera z HTML-a do PostScriptu.
 
 %prep
 %setup -q
