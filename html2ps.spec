@@ -1,17 +1,15 @@
-%include	/usr/lib/rpm/macros.perl
+# don't use macros.perl here, it generates only unnecessary dependencies
 Summary:	HTML to PostScript converter
 Summary(pl):	Konwerter HTML do PostScriptu
 Name:		html2ps
 Version:	1.0b3
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-perl_path.patch
 URL:		http://www.tdb.uu.se/~jan/html2ps.html
-BuildRequires:	perl-libwww
-BuildRequires:	rpm-perlprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_xbindir	/usr/X11R6/bin
