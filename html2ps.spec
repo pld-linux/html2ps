@@ -5,8 +5,6 @@ Version:	1.0b3
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
-Group(de):	Applikationen/Grafik
-Group(pl):	Aplikacje/Grafika
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
 URL:		http://www.tdb.uu.se/~jan/html2ps.html
@@ -35,8 +33,6 @@ html2ps mo¿e byæ u¿ywany przez ImageMagick do konwersji z HTML.
 Summary:	GUI frontend for html2ps, a HTML-to-PostScript converter
 Summary(pl):	Interfejs graficzny do html2ps - konwertera HTML do PostScriptu
 Group:		X11/Applications/Graphics
-Group(de):	X11/Applikationen/Grafik
-Group(pl):	X11/Aplikacje/Grafika
 Requires:	%{name} = %{version}
 Requires:	tk
 
