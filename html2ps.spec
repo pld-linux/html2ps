@@ -67,19 +67,17 @@ install html2psrc.5 $RPM_BUILD_ROOT%{_mandir}/man5
 install html2psrc $RPM_BUILD_ROOT%{_sysconfdir}
 install contrib/xhtml2ps/xhtml2ps $RPM_BUILD_ROOT%{_xbindir}
 
-gzip -9nf README contrib/xhtml2ps/README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz html2ps.html sample
+%doc README html2ps.html sample
 %attr(755,root,root) %{_bindir}/*
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/*
 %{_mandir}/man[15]/*
 
 %files -n xhtml2ps
 %defattr(644,root,root,755)
-%doc contrib/xhtml2ps/*.gz
+%doc contrib/xhtml2ps/README
 %attr(755,root,root) %{_xbindir}/*
