@@ -3,12 +3,13 @@ Summary:	HTML to PostScript converter
 Summary(pl):	Konwerter HTML do PostScriptu
 Name:		html2ps
 Version:	1.0b3
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-perl_path.patch
+Patch2:		%{name}-open.patch
 URL:		http://www.tdb.uu.se/~jan/html2ps.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -49,6 +50,7 @@ konwertera z HTML do PostScriptu.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
 
 %install
 rm -rf $RPM_BUILD_ROOT
