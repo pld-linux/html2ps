@@ -1,0 +1,139 @@
+--- html2ps.orig	Wed Aug 16 23:42:03 2000
++++ html2ps	Wed Oct  9 18:41:24 2002
+@@ -354,8 +354,8 @@
+ 
+ EOR
+ 
+-eval "require POSIX";
+-$posix = !$@;
++use POSIX;
++$posix = 1;
+ 
+ %extend=('quote',1, 'font',1, 'colour',1, 'hyphenation',1);
+ %fal=("serif","times", "sans_serif","helvetica", "monospace","courier");
+@@ -420,7 +420,7 @@
+       ."\$$_\{'font-family'\}:\$body{'font-family'}";
+ }
+ $user=1;
+-if(open(RC,$globrc)) {
++if(open(RC,"<$globrc")) {
+   $conf=<RC>;
+   print DBG "***** Global file $globrc:\n$conf" if($opt_d);
+   &getconf($conf);
+@@ -460,7 +460,7 @@
+   S:for $dir (@hpath) {
+     if(-r $rc && !grep(/^$rc$/,@local) || $files{$dir}=~/ $rc /) {
+       chdir $dir if($files{$dir}=~/ $rc / && $cwd);
+-      if(open(RC,$rc)) {
++      if(open(RC,"<$rc")) {
+         $conf=<RC>;
+         print DBG "***** Personal file $rc:\n$conf" if($opt_d);
+         &getconf($conf);
+@@ -495,6 +495,8 @@
+ die "Ghostscript is required to generate cross references\n"
+  if($opt_R && !$package{'Ghostscript'});
+ $tmpname=$posix?POSIX::tmpnam():"h2p_$$";
++sysopen TMP, $tmpname, O_RDWR|O_CREAT|O_EXCL, 0600 or die "$!";
++close TMP;
+ ($scr=$tmpname)=~/\w+$/;
+ $tempdir=$`;
+ 
+@@ -1023,7 +1025,7 @@
+ for $k (keys %ff) {
+   $f=$ff{$k};
+   if(defined $fontid{$fr{$k}} && !defined($cont{$f})) {
+-    open(FONT,$f) || &dbg("Error opening fontfile $f\n");
++    open(FONT,"<$f") || &dbg("Error opening fontfile $f\n");
+     ($cont{$f}=<FONT>)=~s/(^|\r?\n|\r)%.*//g;
+     close FONT;
+   }
+@@ -2282,7 +2284,7 @@
+     if($contyp!~m|text/html|i) {$_=" <plaintext>\n$_"};
+     unless(($ba2)=$html=~m|(.*://.*/)|) {$ba2=$html."/"};
+   } else {
+-    if(open(FILE,$html)) {
++    if(open(FILE,"<$html")) {
+       &dbg("Reading $html\n") if($opt_W || $opt_d);
+       $_=<FILE>;
+       if(!/<HTML/i && $html!~/html?$/i && ($html!~/\.ps$/i || $ndoc>1)) {
+@@ -2398,7 +2400,7 @@
+     if($type=~/^text\/(html|plain)$/i
+      || !$type && $uaddr=~m"(\.html?|://.+/|://[^/]+)$"i) {
+       $tag=~/data\s*=\s*/i;
+-      if(&open($uaddr,$idoc)) {
++      if(&open($uaddr,"<$idoc")) {
+         if($type=~/plain/i) {
+           $idoc="<XMP>$idoc</XMP>";
+         } else {
+@@ -2527,7 +2529,7 @@
+         } elsif($2 eq "virtual") {
+           $file=$opt_r.$file;
+         }
+-        if(open INC,$file) {
++        if(open INC,"<$file") {
+           $inc=<INC>;
+           &spec($inc);
+           close INC;
+@@ -3179,7 +3181,7 @@
+       open(SCRATCH,">$scr.tex");
+       print SCRATCH $tex;
+       close SCRATCH;
+-      `tex $scr.tex`;
++      `tex $scr.tex`;# seems ok, $scr not user controlled
+       `dvips -E -o $scr.ps $scr.dvi`;
+       open(LOG,"$scr.log");
+       $log=<LOG>;
+@@ -3644,7 +3646,7 @@
+     if($opt_O) {
+       $orig=$URL;
+       unless($orig=~s/\.\w*$/.ps/) {$orig.=".ps"};
+-      if(open(ORIG,"$orig")) {
++      if(open(ORIG,"<$orig")) {
+         $pic=<ORIG>;
+         close ORIG;
+         if($pic=~/^%!/ && $pic=~/%%BoundingBox:/) {
+@@ -3654,7 +3656,7 @@
+       }
+     }
+     if(!$flag) {
+-      if(open(PIC,"$URL")) {
++      if(open(PIC,"<$URL")) {
+         binmode PIC;
+         $pic=<PIC>;
+         close PIC;
+@@ -4075,7 +4077,7 @@
+     $rep{$lang}=$refl{$hyfile};
+     return;
+   }
+-  if(open(HYPH,$hyfile)) {
++  if(open(HYPH,"<$hyfile")) {
+     &dbg("Reading hyphenation patterns from $hyfile\n") if($opt_d);
+     <HYPH>=~/\\patterns{.*/;
+     close HYPH;
+@@ -4150,7 +4152,7 @@
+   }
+   $hext=$hyphenation_extfile{$lang};
+   for(split('\s*:\s*',$hext)) {
+-    if(open(HEXT,$_)) {
++    if(open(HEXT,"<$_")) {
+       &dbg("Reading hyphenation extensions from $_\n") if($opt_d);
+       $hyext.=<HEXT>;
+       close HEXT;
+@@ -4374,7 +4376,7 @@
+ sub getconf {
+   local($_)=@_;
+   while(/\@import\s+(([\w.\/-]+)|"([^"]*)"|'([^']*)')\s*;/) {
+-    if(open(SS,$+) && !$read{$+}) {
++    if(open(SS,"<$+") && !$read{$+}) {
+       $conf=<SS>;
+       $_=$`.$conf.$';
+       print DBG "***** $+:\n$conf" if($opt_d);
+@@ -4559,7 +4561,7 @@
+ sub open {
+   if($_[0]=~m|://|) {
+     &geturl($_[0],$_[1]);
+-  } elsif(open(FILE,$_[0])) {
++  } elsif(open(FILE,"<$_[0]")) {
+     $_[1]=<FILE>;
+     close FILE;
+   } else {
