@@ -75,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README html2ps.html sample
 %attr(755,root,root) %{_bindir}/html2ps
-%config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
 %{_mandir}/man[15]/*
 
 %files -n xhtml2ps
