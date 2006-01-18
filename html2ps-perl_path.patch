@@ -6,6 +6,6 @@
 -  if $running_under_some_shell;
 -
 +#!/usr/bin/perl
- # This is html2ps version 1.0 beta3, an HTML-to-PostScript converter.
+ # This is html2ps version 1.0 beta5, an HTML-to-PostScript converter.
  #   Copyright (C) 1995-2000 Jan Karrman.
  #

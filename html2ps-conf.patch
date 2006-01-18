@@ -5,8 +5,8 @@ diff -Nur html2ps-1.0b3.orig/html2ps html2ps-1.0b3/html2ps
  # Set the name of the global configuration file. See the installation notes
  # and manual page for more details on configuration files.
  
--$globrc='/usr/local/lib/html2ps/html2psrc';
--$ug='/usr/local/lib/html2ps/html2ps.html';
+-$globrc='/opt/misc/lib/html2ps/html2psrc';
+-$ug='/opt/misc/lib/html2ps/html2ps.html';
 +$globrc='@CONFDIR@/html2psrc';
 +$ug='@DOCDIR@/html2ps.html';
  
