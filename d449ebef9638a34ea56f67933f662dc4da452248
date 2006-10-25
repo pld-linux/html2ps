@@ -1,0 +1,3 @@
+- from scratch, added some autoconfiguration
+  NOTE: don't use find-perl-requires here - it can generate some
+  not-really-necessary dependencies
