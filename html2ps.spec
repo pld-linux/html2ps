@@ -34,7 +34,7 @@ html2ps mo¿e byæ u¿ywany przez ImageMagick do konwersji z HTML-a.
 Summary:	GUI frontend for html2ps, a HTML-to-PostScript converter
 Summary(pl):	Interfejs graficzny do html2ps - konwertera HTML-a do PostScriptu
 Group:		X11/Applications/Graphics
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	tk
 
 %description -n xhtml2ps
