@@ -1,6 +1,6 @@
 # don't use macros.perl here, it generates only unnecessary dependencies
 Summary:	HTML to PostScript converter
-Summary(pl.UTF-8):   Konwerter HTML-a do PostScriptu
+Summary(pl.UTF-8):	Konwerter HTML-a do PostScriptu
 Name:		html2ps
 Version:	1.0b5
 Release:	5
@@ -32,7 +32,7 @@ html2ps może być używany przez ImageMagick do konwersji z HTML-a.
 
 %package -n xhtml2ps
 Summary:	GUI frontend for html2ps, a HTML-to-PostScript converter
-Summary(pl.UTF-8):   Interfejs graficzny do html2ps - konwertera HTML-a do PostScriptu
+Summary(pl.UTF-8):	Interfejs graficzny do html2ps - konwertera HTML-a do PostScriptu
 Group:		X11/Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 Requires:	tk
