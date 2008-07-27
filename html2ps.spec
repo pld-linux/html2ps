@@ -3,7 +3,7 @@ Summary:	HTML to PostScript converter
 Summary(pl.UTF-8):	Konwerter HTML-a do PostScriptu
 Name:		html2ps
 Version:	1.0b5
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://www.tdb.uu.se/~jan/%{name}-%{version}.tar.gz
