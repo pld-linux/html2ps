@@ -47,9 +47,9 @@ konwertera z HTML-a do PostScriptu.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p0
 
 %install
 rm -rf $RPM_BUILD_ROOT
